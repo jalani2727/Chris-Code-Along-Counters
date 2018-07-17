@@ -1,9 +1,10 @@
 import React from 'react'; 
-const Counter = () => {
+const Counter = ({finalValue, initialValue}) => {
+    // console.log(props/*"properties"*/);
     return(
         <div className = "counter">
-        3
+        {initialValue} 
         </div>
-    )
+    );
 };
 export default Counter;
