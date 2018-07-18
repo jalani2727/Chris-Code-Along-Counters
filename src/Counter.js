@@ -8,6 +8,32 @@ import React from 'react';
 //     );
 // };
 
+class Counter extends React.Component{
+    render() {
+        return(
+            <div className = "counter">
+            3
+            </div>
+        );
+
+}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // w/ object destructuring. adds the values you're looking for as arguments in place of props as the argument
 const Counter = ({finalValue, initialValue}) => {
     // console.log(props/*"properties"*/);

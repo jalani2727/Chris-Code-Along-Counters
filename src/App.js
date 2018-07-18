@@ -5,6 +5,17 @@ const handleClick = () => {
   console.log("hay")
 }
 
+function convertNumToCounter(value) {
+  return (
+    <Counter initialValue={value}/>
+  );
+};
+
+// This isnt really how it'd get done in React. Saving that part of the lesson for tomorrow
+let counterValues = [42,3,18,29,56];
+let counterElements = counterValues.map(convertNumToCounter);
+
+
 
 const App = () => {
 
@@ -16,7 +27,7 @@ const App = () => {
     <div className = "counter-box">
     {/* here are 5 function calls */}
     {/* it looks like you;re giving a class to some html. but what's actually happening is you;re assigning a value that's picked up becuase it's being listened for in the definition of the counter function in the Counter.js file */}
-    <Counter 
+    {/* <Counter 
     finalValue = "100" 
     initialValue="42"
     />
@@ -35,8 +46,8 @@ const App = () => {
     <Counter 
     finalValue = "100" 
     initialValue="29"
-    />
-
+    /> */}
+{counterElements}
 
     </div>
   </div>
