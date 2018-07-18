@@ -13,22 +13,26 @@ class Counter extends React.Component {
     this.state = {
       currentValue: props.initialValue
     };
+
     setInterval(this._increaseValue, 1000);
   }
 
-// Advice from Chris: Always write helper functions as arrow functions
-// Helps keeps bugs away
+  // Always write helper functions
+  // as arrow functions.
+  // Helps keep the bugs away :)
   _increaseValue = () => {
-    //   calculate the new current value, 
-    let newCurrentValue = this.state.currentValue +1;
-    // then set the new current value in state
-    // but, i must call this.stState
+    // calculate the new currentValue
+    let newCurrentValue = this.state.currentValue + 1;
+
+    // then, set the new currentValue in state
+    // but, I must call this.setState
+    // I cannot alter this.state directly
     this.setState({
-        currentValue: newCurrentValue
-    })
+      currentValue: newCurrentValue
+    });
   }
 
-  // Rule #2: must have render method
+  // Rule #2: must have render method. This is what's getting shipped off to the browser
   render() {
     // Rule #3: must return some JSX
     // or a call to React.createElement

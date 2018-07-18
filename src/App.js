@@ -1,58 +1,65 @@
 import React from 'react'; //this is like using require to pull in the React library
 import Counter from "./Counter.js"; // the variable name isn't really referring to the variable name in the file you're importing from. It's just making a label for use in this file. The vairable name in this file doesnt have to match the variable name of what's being exported in the file that's being imported here
 
-const handleClick = () => {
-  console.log("hay")
-}
 
-function convertNumToCounter(value) {
+
+function convertNumToCounter(obj) {
   return (
-    <Counter initialValue={value}/>
+    <Counter key={obj.id} initialValue={obj.value}/>
   );
 };
 
-// This isnt really how it'd get done in React. Saving that part of the lesson for tomorrow
-let counterValues = [42,3,18,29,56];
-let counterElements = counterValues.map(convertNumToCounter);
+
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      counterValues:[{id:54321, value:10}]
+    }
+  }
+  _handleClick = () => {
+    let newObj= {
+      id:(new Date()).getTime(),
+      value:0
+    };
+    this.setState({
+      counterValues: this.state.counterValues.concat(newObj)
+    });
+  }
 
 
-
-const App = () => {
-
-  // React.createElement("h1", null, "hello");
-
-  return ( 
-  <div className = "container">
-    <button onClick={handleClick}> + </button>
+  render () {
+    return (
+      <div className = "container">
+    <button onClick={this._handleClick}> + </button>
+  
     <div className = "counter-box">
-    {/* here are 5 function calls */}
-    {/* it looks like you;re giving a class to some html. but what's actually happening is you;re assigning a value that's picked up becuase it's being listened for in the definition of the counter function in the Counter.js file */}
-    {/* <Counter 
-    finalValue = "100" 
-    initialValue="42"
-    />
-    <Counter 
-    finalValue = "100" 
-    initialValue="3"
-    />
-    <Counter 
-    finalValue = "100" 
-    initialValue="18"
-    />
-    <Counter 
-    finalValue = "100" 
-    initialValue="56"
-    />
-    <Counter 
-    finalValue = "100" 
-    initialValue="29"
-    /> */}
-{counterElements}
+
+    {this.state.counterValues.map(convertNumToCounter)}
 
     </div>
   </div>
+    )
+  }
+}
+
+
+
+// const App = () => {
+
+//   // React.createElement("h1", null, "hello");
+
+//   return ( 
+//   <div className = "container">
+//     <button onClick={handleClick}> + </button>
+//     <div className = "counter-box">
+
+//   {counterElements}
+
+//     </div>
+//   </div>
   
-  );
-};
+//   );
+// };
 
 export default App;
