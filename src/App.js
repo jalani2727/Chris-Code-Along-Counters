@@ -1,65 +1,80 @@
-import React from 'react'; //this is like using require to pull in the React library
-import Counter from "./Counter.js"; // the variable name isn't really referring to the variable name in the file you're importing from. It's just making a label for use in this file. The vairable name in this file doesnt have to match the variable name of what's being exported in the file that's being imported here
 
+import React from 'react';
+import Counter from './Counter';
 
+function deleteCounterById(theID) {
+  console.log(theID);
+}
 
 function convertNumToCounter(obj) {
   return (
-    <Counter key={obj.id} initialValue={obj.value}/>
+    <Counter
+      key={obj.id}
+      id={obj.id}
+      initialValue={obj.value}
+      doClick={deleteCounterById}
+    />
   );
-};
-
+}
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      counterValues:[{id:54321, value:10}]
-    }
+      // counterValues: [33, 11, 2]
+      counterValues: []
+    };
   }
+
   _handleClick = () => {
-    let newObj= {
-      id:(new Date()).getTime(),
-      value:0
+    let newObj = {
+      id: (new Date()).getTime(),
+      value: 0
     };
     this.setState({
       counterValues: this.state.counterValues.concat(newObj)
     });
   }
 
-
-  render () {
+  render() {
     return (
-      <div className = "container">
-    <button onClick={this._handleClick}> + </button>
-  
-    <div className = "counter-box">
-
-    {this.state.counterValues.map(convertNumToCounter)}
-
-    </div>
-  </div>
-    )
+      <div className='container'>
+        <button onClick={this._handleClick}>+</button>
+        <div className='counter-box'>
+          {this.state.counterValues.map(convertNumToCounter)}
+        </div>
+      </div>
+    );
   }
 }
 
-
-
+// App is a React Component
 // const App = () => {
-
-//   // React.createElement("h1", null, "hello");
-
-//   return ( 
-//   <div className = "container">
-//     <button onClick={handleClick}> + </button>
-//     <div className = "counter-box">
-
-//   {counterElements}
-
+//   return (
+//     <div className='container'>
+//       <button onClick={handleClick}>+</button>
+//       <div className='counter-box'>
+//         {counterElements}
+//       </div>
 //     </div>
-//   </div>
-  
 //   );
 // };
 
 export default App;
+
+/*
+<div>
+  <button>+</button>
+  <div>
+    <div>
+      3
+    </div>
+    <div>
+      1
+    </div>
+    <div>
+      1
+    </div>
+  </div>
+</div>
+*/
