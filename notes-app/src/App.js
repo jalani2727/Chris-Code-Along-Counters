@@ -12,6 +12,7 @@ constructor(props) {
   super(props);
 
   this.state = {
+    selectedId: -1, //-1 means nothing is selected
     notes: [
       {
         id:10001,
@@ -34,15 +35,25 @@ constructor(props) {
       <div className="notes-app">
         
         <SearchBar/> 
-        <DocumentList allNotes={this.state.notes} />
+        <DocumentList allNotes={this.state.notes} handleSelection={this._selectNote} />
 
-        <div className="document-editor">
-        <DocumentEditor/> 
+        <DocumentEditor note={this.state.notes[0]}/> 
         
-        </div>
+       
       </div>
     );
   }
+  // Chris recommends writing heper functions below the render
+  _selectNote = (noteId) => {
+    console.log(noteId);
+    this.setState({
+      selectedId: noteId
+    })
+  }
 }
+
+
+
+
 
 export default App;

@@ -6,8 +6,17 @@ class DocumentList extends Component{
     render() {
         // What is happening here?
         // that allNotes property is an array. The map tacked noto the end is turning that array into something else. The parentheses are the instructors for how to tranform the array the way you want. The instructions are a function. The function is written with an implicit return but it doesnt have to be written this way.
-        let items = this.props.allNotes.map(note =><li key={note.id}className="document-list-item">{note.title}</li>
-        )
+        let items = this.props.allNotes.map(note =>(
+
+        <li key={note.id} className="document-list-item">
+        <a href="#" onClick={()=>{
+            this.props.handleSelection(note.id);
+        }}>
+        {note.title}
+        </a>
+        </li>
+
+        ))
 
         return (
             <div className="document-list">
