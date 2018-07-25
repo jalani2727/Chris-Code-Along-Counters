@@ -6,7 +6,12 @@ class SearchBar extends Component{
         return (
             <header>
           <h1>React Notes App</h1>
-          <input type="text" />
+          <input type="text"
+          value={this.props.text}
+          onChange={(e) => {
+            this.props.handleChange(e.target.value)
+          }}/>       
+        
         </header>
         )
     }

@@ -1,15 +1,32 @@
-import React, {Component} from "react";
+import React from 'react';
 
-
-class DocumentEditor extends Component{
-    render () {
-        return (
-        <div className="document-editor">
-            <textarea value={this.props.note.content}/>
-            </div>
-        )
-    }
+class DocumentEditor extends React.Component {
+  render() {
+    return (
+      <div className="document-editor">
+        <textarea
+          value={this.props.note.content}
+          onChange={(e) => {
+            this.props.handleChange(e.target.value)
+          }}
+        />
+      </div>
+    );
+  }
 }
 
+// A function component is like a
+// "render-only" component.
+// It can't have state.
+// It doesn't have lifecycle methods like
+// componentDidMount or constructor
+// const DocumentEditor = (props) => {
+//   return (
+//     <div className="document-editor">
+//       <textarea value="This is a note. See?" />
+//     </div>
+//   )
+// }
 
-export default DocumentEditor
+
+export default DocumentEditor;
